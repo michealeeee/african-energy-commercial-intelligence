@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --color-ink: #07111c;
+  --color-panel: #0d1a28;
+  --color-panel-2: #122436;
+  --color-line: #1d3a4f;
+  --color-gold: #d4a017;
+  --color-gold-2: #f3c96b;
+  --color-mist: #8aa0b5;
+  --color-paper: #e8eef4;
+  --color-gain: #3dd6a3;
+  --color-loss: #ef6b6b;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #07111c;
+  color: #e8eef4;
+  font-family: var(--font-sans);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #1d3a4f;
+  border-radius: 999px;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
