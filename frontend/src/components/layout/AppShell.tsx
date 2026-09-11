@@ -54,7 +54,7 @@ export function AppShell() {
     <div className="min-h-screen bg-ink text-paper lg:grid lg:grid-cols-[260px_1fr]">
       <aside className={`fixed inset-y-0 left-0 z-40 w-[260px] border-r border-line bg-[#081018] transition-transform lg:static lg:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex h-16 items-center gap-3 border-b border-line px-5">
-          <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-gold text-sm font-bold text-ink">{APP_MARK}</div>
+            <div className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-gold text-sm font-bold text-ink">{APP_MARK}</div>
           <div className="min-w-0">
             <p className="truncate text-sm font-bold tracking-wide">{APP_SHORT}</p>
             <p className="truncate text-[11px] text-mist">{APP_NAV_TAGLINE}</p>

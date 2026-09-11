@@ -2,15 +2,19 @@
 
 @theme {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
-  --color-ink: #07111c;
-  --color-panel: #0d1a28;
-  --color-panel-2: #122436;
-  --color-line: #1d3a4f;
-  --color-gold: #d4a017;
-  --color-gold-2: #f3c96b;
-  --color-mist: #8aa0b5;
-  --color-paper: #e8eef4;
+  --color-ink: #0a1218;
+  --color-panel: #101820;
+  --color-panel-2: #16202a;
+  --color-line: #2a3a48;
+  --color-gold: #b08d57;
+  --color-gold-2: #d2c0a4;
+  --color-flame: #8f7349;
+  --color-flame-2: #c4a574;
+  --color-steel: #8b9aaa;
+  --color-mist: #9aabba;
+  --color-paper: #e8eef2;
   --color-gain: #3dd6a3;
   --color-loss: #ef6b6b;
 }
@@ -23,8 +27,8 @@ body,
 
 body {
   margin: 0;
-  background: #07111c;
-  color: #e8eef4;
+  background: #0a1218;
+  color: #e8eef2;
   font-family: var(--font-sans);
 }
 
@@ -37,7 +41,7 @@ body {
   height: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1d3a4f;
+  background: #2a3a48;
   border-radius: 999px;
 }
 
@@ -51,3 +55,13 @@ textarea {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
 }
+
+.product-rail {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 6px;
+}
+.product-rail span:nth-child(1) { background: #c6b37a; }
+.product-rail span:nth-child(2) { background: #2c3338; }
+.product-rail span:nth-child(3) { background: #8f7349; }
+.product-rail span:nth-child(4) { background: #3d5a73; }
