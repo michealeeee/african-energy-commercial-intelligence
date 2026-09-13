@@ -129,7 +129,7 @@ export default function Login() {
             <div className="p-6 sm:p-8">
               <h2 className="font-display text-3xl font-medium">Open the book</h2>
               <p className="mt-2 text-sm text-mist">
-                Ghana demo tenant. Password for every desk is <span className="num text-gold-2">demo123</span>.
+                This is a demo company. Password for every account is <span className="num text-gold-2">demo123</span>.
               </p>
 
               <form className="mt-6 space-y-4" onSubmit={submit}>

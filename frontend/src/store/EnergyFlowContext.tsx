@@ -24,8 +24,15 @@ function load(): AppState {
     const raw = localStorage.getItem(KEY);
     if (!raw) return SEED_STATE;
     const parsed = JSON.parse(raw) as AppState;
-    if (!parsed.companies?.length) return SEED_STATE;
-    return { ...SEED_STATE, ...parsed, session: parsed.session ?? null };
+    if (!parsed.companies?.length || !parsed.users?.length) return SEED_STATE;
+    const sessionUser = parsed.session?.userId
+      ? parsed.users.find((u) => u.id === parsed.session?.userId)
+      : null;
+    return {
+      ...SEED_STATE,
+      ...parsed,
+      session: sessionUser ? parsed.session : null,
+    };
   } catch {
     return SEED_STATE;
   }
