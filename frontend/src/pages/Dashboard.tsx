@@ -71,6 +71,9 @@ export default function Dashboard() {
         <div className="rounded-2xl border border-line bg-panel p-4">
           <h2 className="font-semibold">4 · Alerts — do these first</h2>
           <ul className="mt-3 space-y-3">
+            {alerts.length === 0 && (
+              <li className="text-sm text-mist">No open alerts on this company. When tanks run low or invoices age, they will list here.</li>
+            )}
             {alerts.map((a) => (
               <li key={a.id} className="border-b border-line pb-3 last:border-0">
                 <p className="text-xs uppercase tracking-wide text-gold">{a.severity} · {a.type.replaceAll("_", " ")}</p>

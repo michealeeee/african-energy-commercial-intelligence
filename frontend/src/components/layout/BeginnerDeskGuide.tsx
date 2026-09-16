@@ -82,7 +82,7 @@ const ROLE_GUIDE: Record<
 };
 
 const PLAN_NOTE: Record<PlanId, string> = {
-  starter: "This company is on Starter. Positions, Analytics, Alerts centre, AI and some reports are locked in the left menu.",
+  starter: "This company is on Starter. Positions, Analytics, the Alerts centre and AI Assistant are hidden in the left menu. Buy, tank, sell and basic reports stay on.",
   professional: "This company is on Professional. You have positions, P&L, alerts and the AI assistant.",
   enterprise: "This company is on Enterprise. Multi-depot architecture and the full commercial menu are on.",
 };
