@@ -28,10 +28,15 @@ export default function Login() {
   const wti = state.market.find((m) => m.id === "m_wti");
   const fx = state.market.find((m) => m.id === "m_usd_ghs");
 
-  const submit = (e: React.FormEvent) => {
+  const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch({ type: "login", email, password });
-    const user = state.users.find((u) => u.email === email && u.password === password && u.status === "active");
+    const form = new FormData(e.currentTarget);
+    const nextEmail = String(form.get("email") ?? email).trim();
+    const nextPassword = String(form.get("password") ?? password);
+    setEmail(nextEmail);
+    setPassword(nextPassword);
+    dispatch({ type: "login", email: nextEmail, password: nextPassword });
+    const user = state.users.find((u) => u.email === nextEmail && u.password === nextPassword && u.status === "active");
     if (!user) {
       setError("Invalid credentials or suspended tenant.");
       return;
@@ -134,10 +139,10 @@ export default function Login() {
 
               <form className="mt-6 space-y-4" onSubmit={submit}>
                 <Field label="Email">
-                  <input className={inputClass} value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="username" />
+                  <input className={inputClass} name="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="username" />
                 </Field>
                 <Field label="Password">
-                  <input className={inputClass} type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" />
+                  <input className={inputClass} name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" />
                 </Field>
                 {error && <p className="text-sm text-loss">{error}</p>}
                 <Button type="submit" variant="gold" className="w-full py-2.5">
