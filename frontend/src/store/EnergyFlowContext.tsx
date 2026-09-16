@@ -17,7 +17,7 @@ import type {
   User,
 } from "../types";
 
-const KEY = "aeci.v1";
+const KEY = "aeci.v2";
 
 function load(): AppState {
   try {
@@ -83,7 +83,7 @@ function avgCost(state: AppState, companyId: string, productId: string, location
 }
 
 export type Action =
-  | { type: "login"; email: string; password: string }
+  | { type: "login"; email: string; password: string; userId?: string }
   | { type: "logout" }
   | { type: "reset" }
   | { type: "upsert_product"; product: Product }
@@ -108,7 +108,11 @@ function reducer(state: AppState, action: Action): AppState {
   const now = new Date().toISOString();
   switch (action.type) {
     case "login": {
-      const user = state.users.find((u) => u.email === action.email && u.password === action.password && u.status === "active");
+      const user =
+        (action.userId
+          ? state.users.find((u) => u.id === action.userId && u.password === action.password && u.status === "active")
+          : undefined) ||
+        state.users.find((u) => u.email === action.email && u.password === action.password && u.status === "active");
       if (!user) return state;
       if (user.companyId) {
         const co = state.companies.find((c) => c.id === user.companyId);

@@ -24,6 +24,7 @@ export default function Login() {
   const [email, setEmail] = useState("oscar.d@example.net");
   const [password, setPassword] = useState("demo123");
   const [error, setError] = useState("");
+  const [pickedUserId, setPickedUserId] = useState("u_apex_admin");
   const brent = state.market.find((m) => m.id === "m_brent");
   const wti = state.market.find((m) => m.id === "m_wti");
   const fx = state.market.find((m) => m.id === "m_usd_ghs");
@@ -35,8 +36,10 @@ export default function Login() {
     const nextPassword = String(form.get("password") ?? password);
     setEmail(nextEmail);
     setPassword(nextPassword);
-    dispatch({ type: "login", email: nextEmail, password: nextPassword });
-    const user = state.users.find((u) => u.email === nextEmail && u.password === nextPassword && u.status === "active");
+    dispatch({ type: "login", email: nextEmail, password: nextPassword, userId: pickedUserId });
+    const user =
+      state.users.find((u) => u.id === pickedUserId && u.password === nextPassword && u.status === "active") ||
+      state.users.find((u) => u.email === nextEmail && u.password === nextPassword && u.status === "active");
     if (!user) {
       setError("Invalid credentials or suspended tenant.");
       return;
@@ -139,7 +142,11 @@ export default function Login() {
 
               <form className="mt-6 space-y-4" onSubmit={submit}>
                 <Field label="Email">
-                  <input className={inputClass} name="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="username" />
+                    <input className={inputClass} name="email" value={email} onChange={(e) => {
+                      setEmail(e.target.value);
+                      const match = state.users.find((u) => u.email === e.target.value);
+                      if (match) setPickedUserId(match.id);
+                    }} autoComplete="username" />
                 </Field>
                 <Field label="Password">
                   <input className={inputClass} name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" />
@@ -154,13 +161,14 @@ export default function Login() {
               <div className="mt-3 max-h-56 overflow-y-auto rounded-md border border-line">
                 {state.users.map((u) => {
                   const co = state.companies.find((c) => c.id === u.companyId);
-                  const active = email === u.email;
+                  const active = pickedUserId === u.id;
                   return (
                     <button
                       key={u.id}
                       type="button"
                       className={`flex w-full items-center justify-between gap-3 border-b border-line px-4 py-3 text-left last:border-0 ${active ? "bg-panel-2" : "hover:bg-panel"}`}
                       onClick={() => {
+                        setPickedUserId(u.id);
                         setEmail(u.email);
                         setPassword(u.password);
                         setError("");
