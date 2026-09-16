@@ -94,7 +94,7 @@ const companies: Company[] = [
 const users: User[] = [
   { id: "u_platform", companyId: null, name: "Ama Mensah", email: "iva.t@example.net", password: "demo123", role: "super_admin", status: "active", lastLoginAt: "2026-09-11T07:10:00Z" },
   { id: "u_apex_admin", companyId: APEX, name: "Kwame Boateng", email: "oscar.d@example.net", password: "demo123", role: "company_admin", status: "active", lastLoginAt: "2026-09-11T06:40:00Z" },
-  { id: "u_apex_cm", companyId: APEX, name: "Akosua Darko", email: "oscar.d@example.net", password: "demo123", role: "commercial_manager", status: "active", lastLoginAt: "2026-09-10T16:02:00Z" },
+  { id: "u_apex_cm", companyId: APEX, name: "Akosua Darko", email: "akosua.d@example.net", password: "demo123", role: "commercial_manager", status: "active", lastLoginAt: "2026-09-10T16:02:00Z" },
   { id: "u_apex_tr", companyId: APEX, name: "Yaw Owusu", email: "ursula.b@example.com", password: "demo123", role: "trader", status: "active", lastLoginAt: "2026-09-11T05:55:00Z" },
   { id: "u_apex_fin", companyId: APEX, name: "Efua Addo", email: "david.c@example.com", password: "demo123", role: "finance_user", status: "active", lastLoginAt: "2026-09-09T12:11:00Z" },
   { id: "u_apex_ops", companyId: APEX, name: "Kofi Asante", email: "iris.p@example.org", password: "demo123", role: "operations_user", status: "active", lastLoginAt: "2026-09-11T04:22:00Z" },

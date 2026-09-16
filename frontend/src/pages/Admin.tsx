@@ -6,14 +6,17 @@ import { KpiCard } from "../components/ui/KpiCard";
 import { ConfirmDialog, Modal } from "../components/ui/Modal";
 import { usd, uid } from "../lib/format";
 import { PLANS, ROLE_LABEL, type Company, type PlanId, type User } from "../types";
-import { useEnergy } from "../store/EnergyFlowContext";
+import { useEnergy, useSession } from "../store/EnergyFlowContext";
+import { BeginnerDeskGuide } from "../components/layout/BeginnerDeskGuide";
 
 export default function AdminHome() {
   const { state } = useEnergy();
+  const { user } = useSession();
   const mrr = state.subscriptions.filter((s) => s.status === "active").reduce((sum, s) => sum + (PLANS.find((p) => p.id === s.planId)?.monthlyPriceUsd ?? 0), 0);
   return (
     <div>
-      <PageHeader eyebrow="Super Admin" title="Platform overview" subtitle="All Ghana tenants, mock billing and system activity. Isolated from company books." />
+      <PageHeader eyebrow="Super Admin" title="Platform overview" subtitle="Start here if you are new. This is the control plane for every tenant — not an OMC commercial book." />
+      {user && <BeginnerDeskGuide role={user.role} person={user.name} />}
       <div className="grid gap-3 md:grid-cols-4">
         <KpiCard label="Companies" value={String(state.companies.length)} />
         <KpiCard label="Active subscriptions" value={String(state.subscriptions.filter((s) => s.status === "active").length)} />
